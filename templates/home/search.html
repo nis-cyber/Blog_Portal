@@ -1,0 +1,32 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h3 class='text-upper text-warning mt-4' style='letter-spacing:2px;'>Search Term-{{keyword}}</h3>
+  
+    <div class="row mb-2 mt-4">
+  
+  
+      {% if blogs %}
+      {%for item in blogs %}
+      
+     
+      <div class="col-md-6">
+        <div class="card border-0" >
+          <div class="card-body">
+            <h3><a class="p-2 text-dark" href="{% url 'single_post' item.slug %}">{{item.title}}</a></h3>
+            <small class="mb-1 text-muted">{{item.created_at| timesince}} ago | {{item.author|capfirst}}</small>
+            <p class="card-text">{{item.descriptions| truncatewords:25}}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% else %}
+  
+  <p> No post found!</p>
+      {% endif %}
+     
+     
+    </div>
+  </div>
+{% endblock %}
