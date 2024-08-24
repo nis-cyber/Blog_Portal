@@ -1,0 +1,61 @@
+{% extends 'home/base.html' %}
+
+
+
+{% block content %}
+
+<div class='container'>
+    <div class='row'>
+      
+        {% include  'nav/inclde.html' %}
+
+        {% comment %} right side here {% endcomment %}
+    
+    
+        <div class='col-md-9'>
+            {% if perms.auth.add_user %}
+            <h3> ALL Posts</h3>
+            <a href='{% url 'add_user' %}' class='btn btn-dark text-light float-right mb-2'>Add here!</a>
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Full Name</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Active</th>
+                    <th>Staff</th>
+                    <th>Superuser</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for user in all_user %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{ user.first_name }}{{ user.last_name }}</td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{% if user.is_active %} <i class="fa-solid fa-check text-success"></i> {% else %}<i class="fa-solid fa-xmark text-danger"></i>{% endif %}</td>
+                    <td>{% if user.is_staff %} <i class="fa-solid fa-check text-success"></i> {% else %}<i class="fa-solid fa-xmark text-danger"></i>{% endif %}</td>
+                    <td>{% if user.is_superuser %} <i class="fa-solid fa-check text-success"></i> {% else %}<i class="fa-solid fa-xmark text-danger"></i>{% endif %}</td>
+                    <td>
+
+                        <a href="{% url 'edit_user' user.id %}"><i class="fa-solid fa-pen-to-square text-success"></i></a>
+                        &nbsp;
+                       <a href="{% url 'delete_user' user.id %}"> <i class="fa-solid fa-trash text-danger"></i></a>
+                    </td>
+                </tr>
+                  
+                {% endfor %}
+                {% else %}
+                <p>You cant see the user page! Thnks You!!</p>
+                {% endif %}
+                  
+                </tbody>
+              </table>
+        </div>
+    
+    </div>
+    </div>
+{% endblock %}

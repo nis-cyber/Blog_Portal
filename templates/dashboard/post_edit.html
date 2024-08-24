@@ -1,0 +1,25 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+{% load crispy_forms_tags %}
+<div class='container'>
+    <div class='row'>
+      
+        {% include  'nav/inclde.html' %}
+
+        {% comment %} right side here {% endcomment %}
+    
+    
+        <div class='col-md-9'>
+            <h3 class='text-center'> Edit Category</h3>
+            <form action='{% url 'post_edit' post.id %}' method='POST' enctype="multipart/form-data" style='width:500px; margin-bottom:8px;'>
+                {% csrf_token %}
+                {{forms | crispy }}
+                <button type='submit' class='btn btn-warning'>Submit</button>
+            </form>
+           
+        </div>
+    
+    </div>
+</div> 
+{% endblock %}

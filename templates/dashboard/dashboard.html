@@ -1,0 +1,47 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+<div class='container'>
+<div class='row'>
+    {% comment %} left side here {% endcomment %}
+ 
+
+    {% include  'nav/inclde.html' %}
+
+    {% comment %} right side here {% endcomment %}
+
+
+    <div class='col-md-9'>
+        logged in as a {{user}}
+        <div class='row'>
+            <div class='col'>
+                <div class='card border-default mb-3'>
+                    <div class='card-header text-center text-uppercase font-weight'>
+                       All Categoires 
+                    </div>
+
+
+                    <div class='card-body text-dark'>
+                        <h5 class='card-title text-center'>{{total_category}}</h5> 
+                    </div>
+                </div>
+            </div>
+            <div class='col'>
+                <div class='card border-default mb-3'>
+                    <div class='card-header text-center text-uppercase font-weight'>
+                       All Posts
+                    </div>
+
+
+                    <div class='card-body text-dark'>
+                        <h5 class='card-title text-center'>{{total_post}}</h5> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+
+{% endblock %}
